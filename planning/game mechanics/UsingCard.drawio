@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="g0zg3xZN9050RKi7q-cW" name="Page-1">
-        <mxGraphModel dx="773" dy="601" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1640" dy="1778" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -11,7 +11,7 @@
                     <mxGeometry x="160" y="40" width="100" height="1300" as="geometry"/>
                 </mxCell>
                 <mxCell id="6" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};fillColor=#eeeeee;strokeColor=#36393d;" parent="3" vertex="1">
-                    <mxGeometry x="45" y="80" width="10" height="1080" as="geometry"/>
+                    <mxGeometry x="45" y="80" width="10" height="1160" as="geometry"/>
                 </mxCell>
                 <mxCell id="13" value="getPlayerCards(playerID)" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;entryX=0;entryY=0;entryDx=0;entryDy=5;" parent="3" target="12" edge="1">
                     <mxGeometry relative="1" as="geometry">
@@ -47,7 +47,7 @@
                 <mxCell id="33" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};fillColor=#ffcc99;strokeColor=#36393d;" parent="9" vertex="1">
                     <mxGeometry x="45" y="720" width="10" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="46" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};fillColor=#ffcc99;strokeColor=#36393d;" vertex="1" parent="9">
+                <mxCell id="46" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};fillColor=#ffcc99;strokeColor=#36393d;" parent="9" vertex="1">
                     <mxGeometry x="45" y="1040" width="10" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="11" value="PlayerState" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};fillColor=#cce5ff;strokeColor=#36393d;" parent="1" vertex="1">
@@ -133,6 +133,9 @@
                 <mxCell id="39" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};fillColor=#ffff88;strokeColor=#36393d;" parent="36" vertex="1">
                     <mxGeometry x="45" y="800" width="10" height="40" as="geometry"/>
                 </mxCell>
+                <mxCell id="51" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};fillColor=#ffff88;strokeColor=#36393d;" vertex="1" parent="36">
+                    <mxGeometry x="45" y="1120" width="10" height="40" as="geometry"/>
+                </mxCell>
                 <mxCell id="40" value="getPokemonStatus(playerID, pokemonID)" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;entryX=0;entryY=0;entryDx=0;entryDy=5;" parent="1" source="8" target="39" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="770" y="845" as="sourcePoint"/>
@@ -143,16 +146,16 @@
                         <mxPoint x="770" y="915" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="42" value="alt" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+                <mxCell id="42" value="alt" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
                     <mxGeometry x="280" y="920" width="300" height="120" as="geometry"/>
                 </mxCell>
-                <mxCell id="43" value="&lt;span style=&quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;[card restriction don&#39;t match pokemon status]&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                <mxCell id="43" value="&lt;span style=&quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;[card restriction don&#39;t match pokemon status]&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
                     <mxGeometry x="330" y="920" width="260" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="44" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="1">
+                <mxCell id="44" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="1" vertex="1">
                     <mxGeometry x="370" y="980" width="10" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="45" value="raise(GameTimeError(message))" style="html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;" edge="1" target="44" parent="1">
+                <mxCell id="45" value="raise(GameTimeError(message))" style="html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;" parent="1" target="44" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="375" y="960" as="sourcePoint"/>
                         <Array as="points">
@@ -160,18 +163,41 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="47" value="getCardEffect(cardID)" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;entryX=0;entryY=0;entryDx=0;entryDy=5;" edge="1" target="46" parent="1" source="6">
+                <mxCell id="47" value="getCardEffect(cardID)" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;entryX=0;entryY=0;entryDx=0;entryDy=5;" parent="1" source="6" target="46" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="455" y="1085" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="48" value="return(effectID)" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;exitX=0;exitY=1;exitDx=0;exitDy=-5;" edge="1" source="46" parent="1" target="6">
+                <mxCell id="48" value="return(effectID)" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;exitX=0;exitY=1;exitDx=0;exitDy=-5;" parent="1" source="46" target="6" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="455" y="1155" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="49" value="Pokemon Effect" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};fillColor=#cdeb8b;strokeColor=#36393d;" vertex="1" parent="1">
+                <mxCell id="49" value="Pokemon Effect" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};fillColor=#cdeb8b;strokeColor=#36393d;" parent="1" vertex="1">
                     <mxGeometry x="960" y="40" width="100" height="1300" as="geometry"/>
+                </mxCell>
+                <mxCell id="50" value="applyEffect(effectID, status[])" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+                    <mxGeometry width="80" relative="1" as="geometry">
+                        <mxPoint x="215" y="1239.9999999999998" as="sourcePoint"/>
+                        <mxPoint x="1009.5" y="1239.9999999999998" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="52" value="getPokemonStatus(playerID, pokemonID)" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;entryX=0;entryY=0;entryDx=0;entryDy=5;" edge="1" target="51" parent="1" source="6">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="220" y="1165" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="53" value="return(status[])" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;exitX=0;exitY=1;exitDx=0;exitDy=-5;" edge="1" source="51" parent="1" target="6">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="220" y="1195" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="62" value="putPokemonStatus(playerID, pokemonID, status[])" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1" source="6">
+                    <mxGeometry width="80" relative="1" as="geometry">
+                        <mxPoint x="210.000909090909" y="1280" as="sourcePoint"/>
+                        <mxPoint x="849.91" y="1280" as="targetPoint"/>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
                 </mxCell>
             </root>
         </mxGraphModel>

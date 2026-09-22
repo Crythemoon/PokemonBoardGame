@@ -35,4 +35,5 @@ class ValidationSystem:
             if pokemonStatus.get("currentHealth") == pokemonStatus.get("maxHealth"):
                 raise Exception.Exception.InvalidTargetError("The target Pokemon is already at full health.")
 
-        #
+        # Check if the target has a status for status removed card
+        if restriction.get("")

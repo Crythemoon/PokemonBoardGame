@@ -16,7 +16,7 @@ class PlayerState:
         pass
 
 
-    def getPlayerHand(self, playerID: int):
+    def getPlayerHand(self, playerID: int)-> list:
         """
         Get the player's hand
 

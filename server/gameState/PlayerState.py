@@ -1,4 +1,12 @@
 class PlayerState:
+    def __init__(self, player: list[1]):
+        self.playerID = player.get("playerID")
+        self.turn = False
+        self.hand = []
+        self.deck = player.get("deck")
+        self.discard_pile = []
+        self.active_pokemon = []
+        self.dead_pokemon = []
 
     def getPlayerTurn(self, playerID: int)-> bool:
         """

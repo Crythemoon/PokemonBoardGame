@@ -1,20 +1,28 @@
+from dataclasses import dataclass, field
+from enum import Enum
+
+class PokemonStateEnum(Enum):
+    IDLE = 0
+    ACTIVE = 1
+    DEAD = 2
+
+@dataclass
 class PokemonState:
-    def __init__(self):
-        self.currentHealth = 0
-        self.maxHealth = 0
-        self.position = (0, 0)
-
-        # Major Pokemon Status Conditions: "paralyzed", "asleep", "frozen", "poisoned", "burned"
-        self.status_condition = set()
-
-        # Stat modifiers for each stat type
-        self.stat_modifiers = []
-
-        # Temporary special effects that can be applied to the Pokemon, such as "double damage" or "immunity"
-        self.effects = []
-
-        # Things pokemon is restricted from doing, such as "cannot attack" or "cannot retreat"
-        self.restrictions = set()
-
-    def getPokemonStatus(self, playerID, pokemonID):
-        pass
+    player_id: int = 0
+    pokemon_id: int = 0
+    name: str = ""
+    
+    primary_type: str = ""
+    secondary_type: str = "" | None
+    
+    state: PokemonStateEnum = PokemonStateEnum.IDLE
+    
+    base_hp: int = 0
+    base_attack: int = 0
+    base_defense: int = 0
+    base_sp_attack: int = 0
+    base_sp_defense: int = 0
+    base_speed: int = 0
+    
+    available_moves: tuple[int] = field(default_factory=tuple)
+    

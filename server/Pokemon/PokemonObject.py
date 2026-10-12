@@ -1,6 +1,6 @@
 from enum import IntEnum
 
-class PokemonType(IntEnum):
+class PokemonTypeEnum(IntEnum):
     NORMAL = 0
     FIRE = 1
     WATER = 2

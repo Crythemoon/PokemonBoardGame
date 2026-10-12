@@ -8,3 +8,6 @@ class GameFactory:
         
         #populate match data
         self.game.populate_match_data()
+        
+        #populate player's data
+        self.game.populate_player_data()

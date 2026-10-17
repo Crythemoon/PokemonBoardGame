@@ -1,5 +1,6 @@
 from dataclasses import dataclass, field
 from enum import Enum
+from game.Move.MoveDefinintion import MoveDefintion
 
 class PokemonStateEnum(Enum):
     IDLE = 0
@@ -24,5 +25,5 @@ class PokemonState:
     base_sp_defense: int = 0
     base_speed: int = 0
     
-    available_moves: tuple[int] = field(default_factory=tuple)
+    available_moves: tuple[MoveDefintion] = field(default_factory=tuple)
     

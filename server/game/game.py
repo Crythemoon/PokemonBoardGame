@@ -1,4 +1,4 @@
-from server.gameState import PlayerState,BoardState,gameState
+from server.gameState import PlayerState,BoardState, PokemonState,gameState
 import server.validation.validationSystem as validationSystem
 import Card.CardDefenition as Card
 import server.map.MapFactory as MapFactory
@@ -57,11 +57,27 @@ class Game:
         
         # Create PokemonState instances for each Pokemon in the team and add them to the player's state
         for pokemon_id in player_pokemon_team:
-            pokemon_json_data = db.get_pokemon_data(pokemon_id)  # Fetch Pokemon data from the database
+            pokemon_json_data = db.get_pokemon_data(player_id, pokemon_id)  # Fetch Pokemon data from the database
             pokemon_data = json.loads(pokemon_json_data)  # Convert JSON string to Python dictionary
+            
+            # Create PokemonState instance and populate it with the fetched data
+            pokemon_state = PokemonState(
+                player_id = player_id,
+                pokemon_id = pokemon_data["pokemon_id"],
+                name = pokemon_data["name"],
+                primary_type = pokemon_data["primary_type"],
+                secondary_type = pokemon_data["secondary_type"] if "secondary_type" in pokemon_data else None,
+                base_hp = pokemon_data["stats"]["hp"],
+                base_attack = pokemon_data["stats"]["attack"],
+                base_defense = pokemon_data["stats"]["defense"],
+                base_sp_attack = pokemon_data["stats"]["sp_attack"],
+                base_sp_defense = pokemon_data["stats"]["sp_defense"],
+                base_speed = pokemon_data["stats"]["speed"],
+            )
 
             #Create MoveDefinition instances for each move in the Pokemon's data
-            
+            player_pokemon_moves_json = db.get_pokemon_moves(player_id, pokemon_id)
+            player_pokemon_moves = json.loads(player_pokemon_moves_json)
     """
     Setup phase for the game, placing pokemon, shuffling and dealing card,
     and deciding who goes first

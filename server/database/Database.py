@@ -25,7 +25,43 @@ class Database:
     
     Returns:
     - json object containing the Pokemon data
+    {
+        "pokemon_id": int,
+        "name": str,
+        "description": str,
+        "primary_type": int,
+        "secondary_type": int | None
+        "stats": {
+            "hp": int,
+            "attack": int,
+            "defense": int,
+            "sp_attack": int,
+            "sp_defense": int,
+            "speed": int
+        }
+    }
     """
     def get_pokemon_data(self, pokemon_id: int):
         # Fetch Pokemon data from the database
+        pass
+    
+    
+        """
+        Get the moveID from the PokemonMove table by searching the
+        PlayerPokemonID from the PlayerPokemon table using pokemonID
+        and playerID
+        
+        Args:
+        - player_id: the ID of the player
+        - pokemon_id: the ID of teh pokemon
+        
+        Returns:
+        - json object of the two moves:
+        {
+            "first_move": int,
+            "second_move": int   
+        }
+        """
+    def get_pokemon_moves(player_id, pokemon_id):
+        # Fetch moveID from PokemonMove
         pass

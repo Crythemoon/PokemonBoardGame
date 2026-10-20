@@ -65,3 +65,34 @@ class Database:
     def get_pokemon_moves(player_id, pokemon_id):
         # Fetch moveID from PokemonMove
         pass
+    
+        """
+        Get all data related to MoveDefintion from MoveDefinition table
+        by searching using moveID
+        
+        Args:
+        - moveID: the ID of the move
+        
+        Returns:
+        - json object of the moves:
+        {
+            "move_id": int,
+            "name": str,
+            "description": str,
+            
+            "move_type": str,
+            "category": str,
+            
+            "power": int,
+            "accuracy": int,
+            
+            "type": str,
+            "cost": int,
+            
+            "target": str,
+            
+        }
+        """
+    def get_move_data(move_id : int):
+        # Fetch the move data from MoveDefinition
+        pass

@@ -38,12 +38,17 @@ class Game:
     """
     def load_player_data(self):
         
+        # get player_id from config
+        player1_id = self.player_configs[0].player_id
+        player2_id = self.player_configs[1].player_id
+        
         # update player_id
-        self.game_state.player1_state.player_id = self.player_configs[0].player1_id
-        self.game_state.player2_state.player_id = self.player_configs[1].player2_id
+        self.game_state.player1_state.player_id = player1_id
+        self.game_state.player2_state.player_id = player2_id
         
         # load player's pokemon team
-        
+        self.load_player_pokemon_team(player1_id,self.game_state.player1_state)
+        self.load_player_pokemon_team(player2_id,self.game_state.player2_state)
 
     """
     Load each player's pokemon team from the database
@@ -51,14 +56,14 @@ class Game:
     Args:
     - player_id: the ID of the player
     """
-    def load_player_pokemon_team(self, player_id: int):
+    def load_player_pokemon_team(self, player_id: int,player_state : PlayerState):
         # Fetch the active Pokemon team for the given player_id from the database
-        player_pokemon_team = db.get_player_active_pokemon_team(player_id)
+        player_pokemon_team = json.loads(db.get_player_active_pokemon_team(player_id))
         
         # Create PokemonState instances for each Pokemon in the team and add them to the player's state
         for pokemon_id in player_pokemon_team:
-            pokemon_json_data = db.get_pokemon_data(player_id, pokemon_id)  # Fetch Pokemon data from the database
-            pokemon_data = json.loads(pokemon_json_data)  # Convert JSON string to Python dictionary
+            # Fetch Pokemon data from the database
+            pokemon_data : dict = json.loads(db.get_pokemon_data(player_id, pokemon_id))  # Convert JSON string to Python dictionary
             
             # Create PokemonState instance and populate it with the fetched data
             pokemon_state = PokemonState(
@@ -76,8 +81,15 @@ class Game:
             )
 
             #Create MoveDefinition instances for each move in the Pokemon's data
-            player_pokemon_moves_json = db.get_pokemon_moves(player_id, pokemon_id)
-            player_pokemon_moves = json.loads(player_pokemon_moves_json)
+            player_pokemon_moves : dict = json.loads(db.get_pokemon_moves(player_id,pokemon_data["pokemon_id"]))
+            
+            
+            # get move's data
+            move_id: int
+            for move_id in player_pokemon_moves.values():
+                
+            
+            
     """
     Setup phase for the game, placing pokemon, shuffling and dealing card,
     and deciding who goes first

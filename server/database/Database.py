@@ -12,9 +12,9 @@ class Database:
     Exceptions:
     - Database connections error
     """
-    def get_player_active_pokemon_team(self, player_id: int):
+    def get_player_pokemon_team(player_id,team_id:int):
         
-        # Fetch the active Pokemon team for the given player_id from the database
+        # Fetch the Pokemon team for the given player_id from the database
         pass
     
     """
@@ -86,7 +86,6 @@ class Database:
             "power": int,
             "accuracy": int,
             
-            "type": str,
             "cost": int,
             
             "target": str,
@@ -95,4 +94,63 @@ class Database:
         """
     def get_move_data(move_id : int):
         # Fetch the move data from MoveDefinition
+        pass
+
+        """
+        Get the chance and all data related to the effect that a move has
+
+        Args:
+        - moveID: the ID of the move
+
+        Returns:
+        - json object of the data:
+        {
+            "effect_id": int
+            "name": str,
+            "description": str,
+
+            "category": str,
+
+            "chance": float,
+            "duration": int,
+
+            "parameter": dict
+        }
+        """
+    def get_move_effect_data(move_effect_id: int):
+        # Fetch the chance and the effect data from MoveEffect and Effect table
+        pass
+
+
+        """
+        Get all move_effect_id from the MoveEffectTable
+
+        Args:
+        - move_id: the ID of the move
+
+        Returns:
+        - json object of all move_id
+        {
+            "moveEffectID": [int]
+        }
+        """
+    def get_move_effect_id(move_id: int):
+        # Fetch all move_effect_id from the MoveEffect table
+        pass
+
+    """
+    Get all cardID from the selected deck from the Deck table
+
+    Args:
+    - player_id: the ID of the player
+    - deck_id: the ID of the selected deck
+
+    Returns:
+    - json object of all card_id:
+    {
+        "cards": [int]
+    }
+    """
+    def get_deck_card(player_id: int,deck_id: int):
+        # Fetch all cardID from the Deck table
         pass

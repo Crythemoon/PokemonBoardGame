@@ -1,6 +1,6 @@
 from dataclasses import dataclass, field
 from enum import Enum
-from game.Move.MoveDefinintion import MoveDefintion
+from server.Move.MoveDefinintion import MoveDefintion
 
 class PokemonStateEnum(Enum):
     IDLE = 0

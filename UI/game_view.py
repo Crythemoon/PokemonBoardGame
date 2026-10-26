@@ -9,4 +9,6 @@ class GameView(arcade.View):
 
         self.ui = arcade.gui.UIManager()
 
+        anchor = arcade.gui.UIAnchorLayout()
+
         

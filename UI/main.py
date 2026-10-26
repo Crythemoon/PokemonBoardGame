@@ -1,5 +1,5 @@
 import arcade
-from views.game_view import GameView
+from UI.game_view import GameView
 
 SCREEN_WIDTH = 1920
 SCREEN_HEIGHT = 1080

@@ -1,3 +1,4 @@
+from arcade import load_texture as Alt
 import arcade.gui
 
 class GameHUD:

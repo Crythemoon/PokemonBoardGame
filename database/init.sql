@@ -1,0 +1,155 @@
+DROP DATABASE IF EXISTS PokemonDB;
+CREATE DATABASE PokemonDB;
+USE PokemonDB;
+
+DROP TABLE IF EXISTS `Users`;
+DROP TABLE IF EXISTS Pokemon;
+DROP TABLE IF EXISTS Player_Pokemon;
+DROP TABLE IF EXISTS MovesDefinition;
+DROP TABLE IF EXISTS PokemonMove;
+DROP TABLE IF EXISTS Types;
+DROP TABLE IF EXISTS PlayerTeam;
+DROP TABLE IF EXISTS TeamPokemon;
+DROP TABLE IF EXISTS PokemonDefinition;
+DROP TABLE IF EXISTS Deck;
+
+
+CREATE TABLE `Users` (
+    UserID INT AUTO_INCREMENT PRIMARY KEY,
+    Username VARCHAR(50) NOT NULL UNIQUE,
+    PasswordHash VARCHAR(255) NOT NULL,
+    Email VARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE PokemonDefinition (
+    PokemonID INT AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(50) NOT NULL,
+    Description TEXT,
+    Type1 INT NOT NULL,
+    Type2 INT DEFAULT NULL,
+    Stats JSON NOT NULL,
+    FOREIGN KEY (Type1) REFERENCES Types(TypeID) ON UPDATE CASCADE ON DELETE SET NULL,
+    FOREIGN KEY (Type2) REFERENCES Types(TypeID) ON UPDATE CASCADE ON DELETE SET NULL
+);
+
+CREATE TABLE Player_Pokemon (
+    PlayerPokemonID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    PokemonID INT NOT NULL,
+    UserID INT NOT NULL,
+    Name VARCHAR(50) NOT NULL,
+    Level INT NOT NULL,
+    Experience INT NOT NULL,
+    FRIENDSHIP INT NOT NULL,
+    FOREIGN KEY (PokemonID) REFERENCES PokemonDefinition(PokemonID) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (UserID) REFERENCES `Users`(UserID) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE MovesDefinition (
+    MoveID INT PRIMARY KEY,
+    TypeID INT NOT NULL,
+    Name VARCHAR(50) NOT NULL,
+    Category VARCHAR(50) NOT NULL,
+    Power INT NOT NULL,
+    Accuracy INT NOT NULL,
+    PP INT NOT NULL,
+    MakeContact BOOLEAN NOT NULL,
+    FOREIGN KEY (TypeID) REFERENCES Types(TypeID) ON UPDATE CASCADE ON DELETE SET NULL
+);
+
+CREATE TABLE PokemonMove (
+    Slot SMALLINT NOT NULL,
+    PlayerPokemonID INT NOT NULL,
+    MoveID INT NOT NULL,
+    PRIMARY KEY (Slot, PlayerPokemonID),
+    FOREIGN KEY (PlayerPokemonID) REFERENCES Player_Pokemon(PlayerPokemonID) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (MoveID) REFERENCES MovesDefinition(MoveID) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE MoveEffect(
+    MoveEffectID INT NOT NULL PRIMARY KEY,
+    MoveID INT NOT NULL,
+    EffectID INT NOT NULL,
+    Chance FLOAT NOT NULL
+    COMMENT 'Chance of the effect occurring, as a percentage (0-1)',
+    FOREIGN KEY (MoveID) REFERENCES MovesDefinition(MoveID) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (EffectID) REFERENCES Effect(EffectID) ON UPDATE CASCADE ON DELETE SET NULL
+);
+
+CREATE TABLE Types (
+    TypeID INT NOT NULL,
+    Name VARCHAR(50) NOT NULL,
+    PRIMARY KEY(TypeID)
+);
+
+CREATE TABLE PlayerTeam(
+    TeamID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    UserID INT NOT NULL,
+    TeamName VARCHAR(50) NOT NULL,
+    FOREIGN KEY (UserID) REFERENCES `Users`(UserID) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE TeamPokemon (
+    Slot SMALLINT NOT NULL,
+    TeamID INT NOT NULL,
+    PlayerPokemonID INT NOT NULL,
+    PRIMARY KEY (Slot, TeamID),
+    FOREIGN KEY (TeamID) REFERENCES PlayerTeam(TeamID) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (PlayerPokemonID) REFERENCES Player_Pokemon(PlayerPokemonID) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE Deck (
+    DeckID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    UserID INT NOT NULL,
+    DeckName VARCHAR(50) NOT NULL,
+    FOREIGN KEY (UserID) REFERENCES `Users`(UserID) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE DeckCard (
+    Slot SMALLINT NOT NULL,
+    DeckID INT NOT NULL,
+    CardID VARCHAR(50) NOT NULL,
+    PRIMARY KEY (Slot, DeckID),
+    FOREIGN KEY (DeckID) REFERENCES Deck(DeckID) ON UPDATE CASCADE ON DELETE CASCADE
+    FOREIGN KEY (CardID) REFERENCES CardDefinition(CardID) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE CardDefinition (
+    CardID VARCHAR(50) NOT NULL PRIMARY KEY,
+    Name VARCHAR(50) NOT NULL,
+    Description TEXT,
+    Type ENUM('ITEM', 'SUPPORTER', 'STADIUM', 'TOOL') NOT NULL
+    COMMENT 'The type of card',
+    Target ENUM('SELF_POKEMON', 'OPPONENT_POKEMON', 'ALL_POKEMON','PLAYER', 'TILE', 'GLOBAL') NOT NULL
+    COMMENT 'The target of the card',
+);
+
+CREATE TABLE CardEffect(
+    CardEffectID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    CardID VARCHAR(50) NOT NULL,
+    EffectID INT NOT NULL,
+    Required_Result ENUM('HEADS', 'TAILS', 'ALWAYS') NOT NULL
+    COMMENT 'The result of the coin flip that is required for the effect to trigger',
+    Required_Count SMALLINT NOT NULL
+    COMMENT 'Number of required coin flips for the effect to trigger',
+    Flip_Count SMALLINT NOT NULL
+    COMMENT 'Number of coin flips to perform for the effect',
+    Comparison ENUM('EXACTLY', 'AT_LEAST', 'AT_MOST') NOT NULL
+    COMMENT 'How to compare the number of successful flips to the required count',
+    FOREIGN KEY (CardID) REFERENCES CardDefinition(CardID) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (EffectID) REFERENCES Effect(EffectID) ON UPDATE CASCADE ON DELETE SET NULL,
+
+);
+
+CREATE TABLE Effect(
+    EffectID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(50) NOT NULL,
+    Category ENUM(
+        'HEALTH', 'STATUS', 'STAT_MODIFIER', 'DAMAGE_MODIFIER',
+        'ACTION_RESTRICTION', 'POSITION', 'BATTLEFIELD', 'CARD_MANIPULATION',
+        'ENERGY_MANIPULATION', 'SPECIAL'
+    ) NOT NULL,
+    Description TEXT,
+    Duration INT NOT NULL
+    COMMENT 'Duration of the effect in turns. 0 means the effect is permanent until removed by another effect.',
+    Parameter JSON
+);

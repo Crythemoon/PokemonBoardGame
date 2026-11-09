@@ -1,22 +1,28 @@
 from arcade import load_texture as Alt
-import arcade.gui
+import arcade.gui as argui
+from .pokemon_panel import Pokemon_Team_Hud
 
 class GameHUD:
-    def __init__(self, on_end_turn):
-        self.manager = arcade.gui.UIManager()
-        self.on_end_turn = on_end_turn
-
-        # Main layout covering the window
-        self.anchor = arcade.gui.UIAnchorLayout()
-
+    def __init__(self):
+        #HUD manager
+        self.manager = argui.UIManager()
+        
+        #HUD UI anchor
+        self.anchor = argui.UIAnchorLayout()
+        
+        self.anchor.add(
+            Pokemon_Team_Hud().team_layout,
+            anchor_x = "left",
+            anchor_y = "center",
+            )
+        
         self.manager.add(self.anchor)
-
-        self._body = arcade.gui.UIAnchorLayout(size_hint=(0.7,1))
-
-    def pokemon_party(self):
-        box = arcade.gui.UIBoxLayout(
-            vertical=True,
-            size_hint=(1,1),
-            align="left",
-            space_between=10
-        )
+    
+    def enable(self):
+        self.manager.enable()
+    
+    def disable(self):
+        self.manager.disable()
+    
+    def draw(self):
+        self.manager.draw()

@@ -1,5 +1,6 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from enum import Enum
+from server.Definition.CardDefinition import CardDefintion
 
 class CardStateEnum(Enum):
     IN_HAND = 1
@@ -9,8 +10,6 @@ class CardStateEnum(Enum):
 
 @dataclass
 class CardState:
-    player_id: int
-    card_id: int
-    name: str
-    type: str
-    state: CardStateEnum
+    player_id: int = 0
+    state: CardStateEnum = CardStateEnum.IN_DECK
+    card_defintion: CardDefintion = field(default_factory=CardDefintion)

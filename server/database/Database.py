@@ -154,3 +154,61 @@ class Database:
     def get_deck_card(player_id: int,deck_id: int):
         # Fetch all cardID from the Deck table
         pass
+    
+    """
+    Get all card data from CardDefinition table
+    
+    Args:
+    - card_id: the ID of the card
+    
+    Returns:
+    - json object of the card data:
+    {
+        "card_id": int,
+        "name": str,
+        "description": str,
+        "card_type": str,
+        "target_type": str,
+        "card_effect_id" : [int]
+    }
+    """
+    def get_card_definition(card_id: int):
+        # Fetch the card definition from the CardDefinition table
+        pass
+    
+    """
+    Get all card effect data from CardEffect table
+    
+    Args:
+    - card_id: the ID of the card
+    
+    Returns:
+    -json object of the card effect data:
+    {
+        "effect_id": int,
+        "name": str,
+        "category": str,
+        "description": str,
+        "duration": int,
+        "parameter": {}
+    }
+    """
+    def get_card_effect_definition(card_id: int):
+        # Fetch the card effect definition from the CardEffect table
+        pass
+    
+        """
+    Get the card effect id from the CardEffect table
+    Args:
+    - card_id: the ID of the card
+    
+    Returns:
+    - json object of the card effect id:
+    {
+        "card_effect_id": [int]
+    }
+        """
+    def get_card_effect_id(card_id: int):
+        # Fetch the card effect id from the CardEffect table
+        pass
+    

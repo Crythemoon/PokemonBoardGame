@@ -1,9 +1,12 @@
 from server.gameState import PlayerState,PokemonState,gameState
+from server.gameState.CardState import CardState, CardStateEnum
 import server.map.MapFactory as MapFactory
 from config import MatchConfig, PlayerConfig
 from server.database.Database import Database as db
-from server.Move.MoveDefinintion import MoveDefinition, MoveCategoryEnum, MoveCost, MoveTargetingEnum, MoveEffect, MoveEffectCategory
+from server.Definition.MoveDefinintion import MoveDefinition, MoveCategoryEnum, MoveCost, MoveTargetingEnum, MoveEffect, MoveEffectCategory
 from server.Pokemon.PokemonObject import PokemonTypeEnum
+from server.Definition.CardDefinition import CardDefintion, CardType, TargetType
+from server.Definition.EffectDefinition import EffectDefinition, EffectCategoryEnum
 import json
 
 class Game:
@@ -55,6 +58,16 @@ class Game:
         # Load player's deck
         player1_deck_id = self.player_configs[0].deck_id
         player2_deck_id = self.player_configs[1].deck_id
+        self.load_player_deck(
+            player_id=player1_id,
+            deck_id=player1_deck_id,
+            player_state=self.game_state.player1_state
+        )
+        self.load_player_deck(
+            player_id=player2_id,
+            deck_id=player2_deck_id,
+            player_state=self.game_state.player2_state
+        )
 
 
     """
@@ -148,17 +161,46 @@ class Game:
     - player_state (PlayerState): the PlayerState of the corresponding player
       saved in GameState
     """
-    def load_player_deck(player_id: int,deck_id: int,player_state: PlayerState.PlayerState):
+    def load_player_deck(self,player_id: int,deck_id: int,player_state: PlayerState.PlayerState):
         # Get cardID from the active Deck in the database
         cards = json.loads(db.get_deck_card(player_id,deck_id))
 
         for card in cards["cards"]:
             # Get card definition from the database from each card
+            card_data = json.loads(db.get_card_definition(card))
+            
+            # Create CardDefinition using the data
+            card_definition = CardDefintion(
+                card_id = card_data["card_id"],
+                name = card_data["name"],
+                description = card_data["description"],
+                card_type = CardType(card_data["card_type"]),
+                target_type = TargetType(card_data["target_type"]),                
+            )
+            # Get effect definition for the card from the database
+            card_effect_ids = json.loads(db.get_card_effect_id(card))
+            for effect_id in card_effect_ids:
+                effect_data = json.loads(db.get_card_effect_definition(effect_id))
+                effect_definition = EffectDefinition(
+                    effect_id = effect_data["effect_id"],
+                    name = effect_data["name"],
+                    category = EffectCategoryEnum(effect_data["category"]),
+                description = effect_data["description"],
+                duration = effect_data["duration"],
+                parameter = effect_data["parameter"]
+                )
+                card_definition.effects += (effect_definition,)
+                
+            # Create CardState using the data
+            card_state = CardState.CardState(
+                player_id = player_id,
+                state = CardStateEnum.IN_DECK,
+                card_definition = card_definition 
+            )
+            
+            # Adding the card to the deck in PlayerState
+            player_state.deck.append(card_state)
 
-        # Create CardDefinition using the data
-        # Adding the card to the deck in PlayerState
-        
-            pass
     
     """
     Setup phase for the game, placing pokemon, shuffling and dealing card,

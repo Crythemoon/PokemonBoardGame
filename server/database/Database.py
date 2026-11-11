@@ -212,3 +212,39 @@ class Database:
         # Fetch the card effect id from the CardEffect table
         pass
     
+        """
+    Get the player's name, deck id and team id from the database
+    
+    Args:
+    - player_id: the ID of the player
+    
+    Returns:
+    - json object of the data:
+    {
+        "player_id": int,
+        "name": str,
+        "team_id": int,
+        "deck_id": int
+    }
+    
+    Exceptions:
+    - PlayerDataInvalid(): if the player's data is missing from the database
+        """
+    def get_player_config_data(player_id:int):
+        # Fetch the player's name, deck id and team id from the database
+        pass
+    
+        """
+    Check if the match's id exists in the database, then insert it into
+    the match table if it doesn't
+    
+    Args:
+    - match_id: the UUID of the match
+    
+    Exceptions:
+    - MatchIDInvalidError(): if the match's id already exists in the database
+        """
+    def put_match_id(match_id:int):
+        # Check if the match_id exists in the database and raise an error if it does
+        # Put the match id into the database
+        pass

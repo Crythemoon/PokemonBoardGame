@@ -6,3 +6,12 @@ class InvalidCardError(Exception):
 
 class InvalidTargetError(Exception):
     pass
+
+class MatchIDInvalidError(Exception):
+    pass
+
+class MatchCreationFailure(Exception):
+    pass
+
+class PlayerDataInvalid(Exception):
+    pass

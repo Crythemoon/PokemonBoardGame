@@ -12,7 +12,11 @@ DROP TABLE IF EXISTS PlayerTeam;
 DROP TABLE IF EXISTS TeamPokemon;
 DROP TABLE IF EXISTS PokemonDefinition;
 DROP TABLE IF EXISTS Deck;
-
+DROP TABLE IF EXISTS Deck_Card;
+DROP TABLE IF EXISTS CardDefinition;
+DROP TABLE IF EXISTS CardEffect;
+DROP TABLE IF EXISTS Effect;
+DROP TABLE IF EXISTS Match;
 
 CREATE TABLE `Users` (
     UserID INT AUTO_INCREMENT PRIMARY KEY,
@@ -152,4 +156,8 @@ CREATE TABLE Effect(
     Duration INT NOT NULL
     COMMENT 'Duration of the effect in turns. 0 means the effect is permanent until removed by another effect.',
     Parameter JSON
+);
+
+CREATE TABLE Match(
+    MatchID VARCHAR(36) PRIMARY KEY
 );

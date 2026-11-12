@@ -228,7 +228,8 @@ class Database:
     }
     
     Exceptions:
-    - PlayerDataInvalid(): if the player's data is missing from the database
+    - PlayerDataInvalid(): if the player's data is missing from the database return message:
+    "Player {player_id} is missing: {missing_fields}"
         """
     def get_player_config_data(player_id:int):
         # Fetch the player's name, deck id and team id from the database

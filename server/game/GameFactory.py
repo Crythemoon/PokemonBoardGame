@@ -15,6 +15,7 @@ class GameFactory:
         )
         
         # Create match's config
+        match_config = self.create_match_config()
             
         
         #initialize the game with the provided player and match configurations
@@ -27,12 +28,16 @@ class GameFactory:
         self.game.populate_player_data()
         
     def create_player_configs(self,player1_id:int,player2_id:int,max_attempts=3):
+        player_id_invalid:int
+        missing_fields:tuple
         for attempt in max_attempts:
             try:            
                 # Get player's name, team and deck from database
                 player1_config_data = json.loads(db.get_player_config_data(player1_id))
                 player2_config_data = json.loads(db.get_player_config_data(player2_id))
-            except PlayerDataInvalid:
+            except PlayerDataInvalid as error:
+                player_id_invalid = error.player_id
+                missing_fields = error.mising_fields
                 continue
             else:
                 # Create player's config for each player

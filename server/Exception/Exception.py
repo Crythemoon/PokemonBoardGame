@@ -20,3 +20,12 @@ class PlayerDataInvalid(Exception):
         super().__init__(
             f"Player {player_id} is missing: {', '.join(missing_fields)}"
         )
+
+class GameObjectCreationFailed(Exception):
+    pass
+
+class PlayerConfigValidationError(Exception):
+    pass
+
+class MatchConfigValidationError(Exception):
+    pass
